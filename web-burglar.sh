@@ -17,7 +17,7 @@ EOF
 # Функция проверки необходимого ПО
 need_soft=("curl" "ssh")
 need_install_soft=()
-for program in "${need_soft}"
+for program in "${need_soft[@]}"; do
     if [ -z "$(which $program)" ]; then
         echo -e "$program \033[31m✘\033[0m"
         need_install_soft+="$program"
@@ -25,6 +25,7 @@ for program in "${need_soft}"
     else
         echo -e "$program \033[32m✔\033[0m"
     fi
+done
 
 # Запускаем основной скрипт
 while true; do
