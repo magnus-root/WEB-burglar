@@ -24,7 +24,7 @@ echo "0. Возврат в главное меню"
 read choise
 
 case $choise in
-    1) bash SQLi/sqli_check.sh ;;
+    1) bash Modules/SQLi/sqli_check.sh ;;
     2) ;;
     3) ;;
     4) ;;
