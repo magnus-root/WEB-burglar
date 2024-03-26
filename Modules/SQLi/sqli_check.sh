@@ -12,7 +12,7 @@ while true; do
         # Проверяем заголовки и размеры страниц в ответе сайта
         res1=$(curl -I $url_place | grep HTTP | grep -c "OK")
         if [[ $res1 -eq 1 ]]; then
-            size_res1=$(curl -I $url_place | ls -l | awk '{print $5}')
+            size_res1=$(curl $url_place) && size_res1 | ls -l | awk '{print $5}'
         else
             echo "Сайт недоступен"
             sleep 1
@@ -20,7 +20,7 @@ while true; do
         fi
         res2=$(curl -I "$url_place"\'+or+1=1\--+- | grep HTTP | grep -c "OK")
         if [[ $res2 -eq 1 ]]; then
-            size_res2=$(curl -I "$url_place"\'+or+1=1\--+-| ls -l | awk '{print $5}')
+            size_res2=$(curl "$url_place"\'+or+1=1\--+-) && size_res2 | ls -l | awk '{print $5}'
         else
             echo "Сайт падает при инъекции"
             sleep 1
