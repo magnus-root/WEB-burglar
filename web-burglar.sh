@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat << "EOF"
                                                                                                                                                                                                                                     
@@ -10,7 +10,7 @@ cat << "EOF"
 +----------------------------------------------------------------------------------------------------------------+
 |                          Скрипт для помощи в проведении тестирования на проникновение                          |
 |                                                  v.0.0.1                                                       |
-|                                            разработал Enokh Root                                               |
+|                                           разработал Magnus Root                                               |
 +----------------------------------------------------------------------------------------------------------------+
 EOF
 
@@ -18,7 +18,7 @@ EOF
 need_soft=("curl" "ssh")
 need_install_soft=()
 for program in "${need_soft[@]}"; do
-    if [ -z "$(which $program)" ]; then
+    if [[ -z "$(which $program)" ]]; then
         echo -e "$program \033[31m✘\033[0m"
         need_install_soft+="$program"
         need_install_soft+=" "
@@ -26,7 +26,6 @@ for program in "${need_soft[@]}"; do
         echo -e "$program \033[32m✔\033[0m"
     fi
 done
-
 # Запускаем основной скрипт
 while true; do
 # Показываем меню и предлагаем выбрать, затем считываем выбор
@@ -35,7 +34,7 @@ echo "1. SQL-инъекцию"
 read choise
 # Согласно сделанному выбору выводим информацию
 case $choise in
-    1) echo "SQLi";;
+    1) bash Modules/SQLi/start_sqli.sh;;
     *) echo "Пока ничего больше нет";;
 esac
 done
